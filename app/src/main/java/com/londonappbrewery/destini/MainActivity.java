@@ -1,6 +1,7 @@
 package com.londonappbrewery.destini;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -67,9 +68,15 @@ public class MainActivity extends AppCompatActivity {
             mButtonTop.setVisibility(View.GONE);
             mButtonBottom.setVisibility(View.GONE);
             new AlertDialog.Builder(this)
-                    .setMessage("The game is OVER! You died probably...")
+                    .setMessage("GAME OVER")
+                    .setCancelable(false)
+                    .setNegativeButton("See you next time! ;)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
                     .show();
-            finish();
         } else {
             mButtonTop.setText(top);
             mButtonBottom.setText(bottom);
